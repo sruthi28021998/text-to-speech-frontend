@@ -1,5 +1,7 @@
+import Home from "./pages/Home";
+
 function App() {
-  return <div>Text to Speech app — coming together</div>;
+  return <Home />;
 }
 
 export default App;
