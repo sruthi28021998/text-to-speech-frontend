@@ -112,3 +112,8 @@ select {
   font-size: 14px;
   margin-bottom: 16px;
 }
+
+.audio-player-wrap audio {
+  width: 100%;
+  margin-top: 8px;
+}

@@ -3,6 +3,7 @@ import TextInput, { MAX_CHARS } from "../components/TextInput";
 import LanguageSelector from "../components/LanguageSelector";
 import VoiceSelector from "../components/VoiceSelector";
 import GenerateButton from "../components/GenerateButton";
+import AudioPlayer from "../components/AudioPlayer";
 import ErrorMessage from "../components/ErrorMessage";
 import { fetchVoices, generateSpeech, extractErrorMessage } from "../services/api";
 
@@ -106,9 +107,7 @@ function Home() {
       {audioUrl && (
         <div className="card">
           <h3>Generated Audio</h3>
-          <p style={{ fontSize: "13px", color: "#6b7280" }}>
-            Audio player and download button arrive on Day 12–13.
-          </p>
+          <AudioPlayer audioUrl={audioUrl} />
         </div>
       )}
     </div>
