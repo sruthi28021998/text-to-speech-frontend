@@ -14,6 +14,7 @@ function Home() {
   const [language, setLanguage] = useState("");
   const [voice, setVoice] = useState("");
   const [audioUrl, setAudioUrl] = useState("");
+  const [translatedText, setTranslatedText] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [voicesLoading, setVoicesLoading] = useState(true);
@@ -74,9 +75,11 @@ function Home() {
 
     setLoading(true);
     setAudioUrl("");
+    setTranslatedText("");
     try {
-      const url = await generateSpeech({ text, language, voice });
-      setAudioUrl(url);
+      const { audioUrl, translatedText } = await generateSpeech({ text, language, voice });
+      setAudioUrl(audioUrl);
+      setTranslatedText(translatedText || "");
     } catch (err) {
       setError(extractErrorMessage(err));
     } finally {
@@ -99,8 +102,7 @@ function Home() {
         </div>
 
         <p className="lang-hint">
-          Tip: for correct pronunciation, type your text in the selected language's own script
-          (this app doesn't translate).
+          Type in any language — your text is automatically translated before being spoken.
         </p>
 
         <GenerateButton
@@ -113,6 +115,11 @@ function Home() {
       {audioUrl && (
         <div className="card">
           <h3>Generated Audio</h3>
+          {translatedText && (
+            <p style={{ fontSize: "14px", color: "#374151", marginBottom: "8px" }}>
+              Spoken text: <strong>{translatedText}</strong>
+            </p>
+          )}
           <AudioPlayer audioUrl={audioUrl} />
           <DownloadButton audioUrl={audioUrl} />
         </div>

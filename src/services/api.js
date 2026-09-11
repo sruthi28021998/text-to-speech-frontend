@@ -12,7 +12,10 @@ export async function fetchVoices(language) {
 
 export async function generateSpeech({ text, language, voice }) {
   const response = await api.post("/tts", { text, language, voice });
-  return response.data.audioUrl;
+  return {
+    audioUrl: response.data.audioUrl,
+    translatedText: response.data.translatedText,
+  };
 }
 
 export function extractErrorMessage(error) {
