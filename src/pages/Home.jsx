@@ -5,6 +5,7 @@ import VoiceSelector from "../components/VoiceSelector";
 import GenerateButton from "../components/GenerateButton";
 import AudioPlayer from "../components/AudioPlayer";
 import ErrorMessage from "../components/ErrorMessage";
+import DownloadButton from "../components/DownloadButton";
 import { fetchVoices, generateSpeech, extractErrorMessage } from "../services/api";
 
 function Home() {
@@ -108,8 +109,9 @@ function Home() {
         <div className="card">
           <h3>Generated Audio</h3>
           <AudioPlayer audioUrl={audioUrl} />
+          <DownloadButton audioUrl={audioUrl} />
         </div>
-      )}
+  )}
     </div>
   );
 }
