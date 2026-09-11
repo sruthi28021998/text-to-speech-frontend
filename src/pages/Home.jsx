@@ -4,8 +4,8 @@ import LanguageSelector from "../components/LanguageSelector";
 import VoiceSelector from "../components/VoiceSelector";
 import GenerateButton from "../components/GenerateButton";
 import AudioPlayer from "../components/AudioPlayer";
-import ErrorMessage from "../components/ErrorMessage";
 import DownloadButton from "../components/DownloadButton";
+import ErrorMessage from "../components/ErrorMessage";
 import { fetchVoices, generateSpeech, extractErrorMessage } from "../services/api";
 
 function Home() {
@@ -98,6 +98,11 @@ function Home() {
           <VoiceSelector voices={voicesForLanguage} value={voice} onChange={setVoice} />
         </div>
 
+        <p className="lang-hint">
+          Tip: for correct pronunciation, type your text in the selected language's own script
+          (this app doesn't translate).
+        </p>
+
         <GenerateButton
           onClick={handleGenerate}
           loading={loading}
@@ -111,7 +116,7 @@ function Home() {
           <AudioPlayer audioUrl={audioUrl} />
           <DownloadButton audioUrl={audioUrl} />
         </div>
-  )}
+      )}
     </div>
   );
 }
